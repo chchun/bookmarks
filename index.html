@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로님의 북마크</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Malgun Gothic', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            padding: 20px;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .search-box {
+            margin: 20px auto;
+            max-width: 600px;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            outline: none;
+        }
+        
+        .bookmark-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .category {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        
+        .category h2 {
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #667eea;
+            font-size: 1.4em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .category h2 .icon {
+            font-size: 1.2em;
+        }
+        
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .links a {
+            color: #1a73e8;
+            text-decoration: none;
+            padding: 12px 15px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #f8f9fa;
+        }
+        
+        .links a:hover {
+            background: #e8f0fe;
+            transform: translateX(5px);
+            color: #1557b0;
+        }
+        
+        .links a::before {
+            content: "→";
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        .last-updated {
+            text-align: center;
+            color: white;
+            margin-top: 30px;
+            opacity: 0.8;
+            font-size: 0.9em;
+        }
+        
+        @media (max-width: 768px) {
+            .bookmark-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            header h1 {
+                font-size: 1.8em;
+            }
+        }
+        
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 프로님의 북마크</h1>
+            <p>자주 방문하는 사이트 모음</p>
+        </header>
+        
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="🔍 북마크 검색...">
+        </div>
+        
+        <div class="bookmark-grid">
+            <!-- Confluence -->
+            <div class="category" data-category="confluence">
+                <h2><span class="icon">📝</span>Confluence</h2>
+                <div class="links">
+                    <a href="https://confluence.atlassian.com/spaces/chchun" target="_blank">chchun 워크스페이스</a>
+                    <a href="https://confluence.atlassian.com/spaces/mcandle" target="_blank">mcandle 워크스페이스</a>
+                </div>
+            </div>
+            
+            <!-- Gen AI -->
+            <div class="category" data-category="genai">
+                <h2><span class="icon">🤖</span>Gen AI</h2>
+                <div class="links">
+                    <a href="https://claude.ai" target="_blank">Claude</a>
+                    <a href="https://chat.openai.com" target="_blank">ChatGPT</a>
+                    <a href="https://gemini.google.com" target="_blank">Gemini</a>
+                    <a href="https://notebooklm.google.com" target="_blank">Gemini NotebookLM</a>
+                </div>
+            </div>
+            
+            <!-- GitHub -->
+            <div class="category" data-category="github">
+                <h2><span class="icon">💻</span>GitHub</h2>
+                <div class="links">
+                    <a href="https://github.com/chchun88" target="_blank">chchun88</a>
+                    <a href="https://github.com/mcandle-dev" target="_blank">mcandle-dev</a>
+                </div>
+            </div>
+            
+            <!-- 자주 가는 곳 -->
+            <div class="category" data-category="frequent">
+                <h2><span class="icon">⭐</span>자주 가는 곳</h2>
+                <div class="links">
+                    <a href="https://www.google.com" target="_blank">Google</a>
+                    <a href="https://www.naver.com" target="_blank">Naver</a>
+                    <a href="https://www.youtube.com" target="_blank">YouTube</a>
+                </div>
+            </div>
+            
+            <!-- 업무용 -->
+            <div class="category" data-category="work">
+                <h2><span class="icon">💼</span>업무용</h2>
+                <div class="links">
+                    <a href="https://www.samsung.net" target="_blank">삼성</a>
+                    <a href="https://smart-safety.samsungsds.net" target="_blank">SSMS</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="last-updated">
+            Last updated: <span id="lastUpdate"></span>
+        </div>
+    </div>
+    
+    <script>
+        // 마지막 업데이트 날짜 표시
+        document.getElementById('lastUpdate').textContent = new Date().toLocaleDateString('ko-KR');
+        
+        // 검색 기능
+        const searchInput = document.getElementById('searchInput');
+        const categories = document.querySelectorAll('.category');
+        
+        searchInput.addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            
+            categories.forEach(category => {
+                const links = category.querySelectorAll('a');
+                const categoryTitle = category.querySelector('h2').textContent.toLowerCase();
+                let hasVisibleLink = false;
+                
+                links.forEach(link => {
+                    const linkText = link.textContent.toLowerCase();
+                    if (linkText.includes(searchTerm) || categoryTitle.includes(searchTerm)) {
+                        link.classList.remove('hidden');
+                        hasVisibleLink = true;
+                    } else {
+                        link.classList.add('hidden');
+                    }
+                });
+                
+                if (hasVisibleLink || searchTerm === '') {
+                    category.classList.remove('hidden');
+                } else {
+                    category.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
